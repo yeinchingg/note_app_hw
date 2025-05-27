@@ -6,6 +6,7 @@ class Note {
   // final String Yx;
 
   final String WT;
+  final String newString;
 
 
   Note({
@@ -13,7 +14,8 @@ class Note {
     required this.dateTime,
     required this.description,
 
-    this.WT=""
+    this.WT="",
+    this.newString=""
 
   });
 }
