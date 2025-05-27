@@ -3,8 +3,7 @@ class Note {
   final String description;
   final DateTime dateTime;
 
-  // final String Yx;
-
+  final String Yx;
   final String WT;
 
 
@@ -13,7 +12,8 @@ class Note {
     required this.dateTime,
     required this.description,
 
-    this.WT=""
+    this.WT="",
+    this.Yx=""
 
   });
 }
