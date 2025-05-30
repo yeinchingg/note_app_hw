@@ -18,6 +18,15 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AddNotePage()),
+          );
+        },
+        child: Icon(Icons.add),
+      ),
       appBar: AppBar(title: const Text('note_app_hw')),
       body: ListView.builder(
         itemCount: _noteService.notes.length,
@@ -33,6 +42,18 @@ class _MyAppState extends State<MyApp> {
           );
         },
       ),
+    );
+  }
+}
+
+class AddNotePage extends StatelessWidget {
+  const AddNotePage({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+        child: Center(
+          child: TextButton(child: Text('confirm'),onPressed: () {Navigator.pop(context);}),
+        )
     );
   }
 }
