@@ -2,8 +2,7 @@ import 'constants.dart';
 import 'package:flutter/material.dart';
 import 'components/note_card.dart';
 import 'controller/note_service.dart';
-import 'secondpage.dart';
-
+import 'addnote.dart';
 void main() => runApp(MaterialApp(theme: ThemeData.dark(), home: MyApp()));
 
 class MyApp extends StatefulWidget {
@@ -36,12 +35,9 @@ class _MyAppState extends State<MyApp> {
             note: _noteService.notes[index],
             color: colorPool[index % colorPool.length],
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => SecondRoute(), // 這裡之後可以傳 note 資料進去
-                ),
-              );
+              setState(() {
+                _noteService.deleteNote(index: index);
+              });
             },
           );
         },
@@ -50,20 +46,3 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-class AddNotePage extends StatelessWidget {
-  const AddNotePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      child: Center(
-        child: TextButton(
-          child: Text('confirm'),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-      ),
-    );
-  }
-}
