@@ -1,8 +1,6 @@
-import 'package:note_app_hw/model/note.dart'
-
-class NoteService {
-  //_ -> 設private
-  final List<Note> _notes = [
+import 'package:note_app_hw/model/note.dart';
+class NoteService{
+  final List <Note> _notes = [//private
     Note(
       title: '📌 Regularization Techniques in Deep Learning',
       description:
@@ -10,15 +8,15 @@ class NoteService {
       dateTime: DateTime.now().subtract(const Duration(days: 1)),
     ),
     Note(
-      title: '🔍 Common Git Errors and Fixes',
-      dateTime: DateTime.now().subtract(const Duration(days: 3)),
-      description: 'Covers merge conflicts, detached HEAD, and push issues.',
-    ),
-    Note(
       title: '🧠 Difference Between Memory and Registers',
       dateTime: DateTime.now().subtract(const Duration(days: 2)),
       description:
       'Registers are faster and smaller; memory stores larger data.',
+    ),
+    Note(
+      title: '🔍 Common Git Errors and Fixes',
+      dateTime: DateTime.now().subtract(const Duration(days: 3)),
+      description: 'Covers merge conflicts, detached HEAD, and push issues.',
     ),
     Note(
       title: '🎯 Implementing Animations in Flutter',
@@ -32,15 +30,11 @@ class NoteService {
     ),
   ];
 
-  List<Note> get notes => _notes;
-
-  void deleteNote({required int index}) {
-    notes.removeAt(index);
+  List <Note> get notes => _notes;
+  void deleteNote({required int index}){
+    _notes.removeAt(index);
   }
-
-  void addNote({required String title, required String description}) {
-    notes.add(
-      Note(title: title, dateTime: DateTime.now(), description: description),
-    );
+  void addNote({required Note note}){
+    _notes.add(note);
   }
 }
