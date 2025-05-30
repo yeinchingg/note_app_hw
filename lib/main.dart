@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'components/note_card.dart';
 import 'controller/note_service.dart';
 import 'addnote.dart';
+import 'model/note.dart';
+
 void main() => runApp(MaterialApp(theme: ThemeData.dark(), home: MyApp()));
 
 class MyApp extends StatefulWidget {
@@ -14,16 +16,20 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final NoteService _noteService = NoteService();
+  Note newNote = Note(title: "", dateTime: DateTime.now(), description: "");
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
+        onPressed: () async {
+          newNote = await Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => AddNotePage()),
           );
+          setState(() {
+            _noteService.addNote(note: newNote);
+          });
         },
         child: Icon(Icons.add),
       ),
@@ -45,4 +51,3 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-

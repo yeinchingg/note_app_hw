@@ -34,4 +34,7 @@ class NoteService{
   void deleteNote({required int index}){
     _notes.removeAt(index);
   }
+  void addNote({required Note note}){
+    _notes.add(note);
+  }
 }
