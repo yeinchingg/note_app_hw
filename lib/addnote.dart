@@ -12,27 +12,42 @@ class AddNotePage extends StatefulWidget {
 class _AddNotePageState extends State<AddNotePage> {
   String title = "";
   String description = "";
-  final NoteService _noteService = NoteService();
+  final TextEditingController _titleController = TextEditingController();
+  final TextEditingController _descController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: Center(
-        child: TextButton(
-          child: Text('confirm'),
-          onPressed: () {
-
-            Navigator.pop(
-              context,
-              Note(
-                title: title,
-                description: description,
-                dateTime: DateTime.now(),
-              ),
-            );
-          },
+    return Scaffold(
+      appBar: AppBar(title: Text(" add new note")),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            TextField(
+              controller: _titleController,
+              decoration: InputDecoration(labelText: 'Title'),
+            ),
+            TextField(
+              controller: _descController,
+              decoration: InputDecoration(labelText: 'Description'),
+              maxLines: 5,
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              child: Text('send'),
+              onPressed: () {
+                final newNote = Note(
+                  title: _titleController.text,
+                  description: _descController.text,
+                  dateTime: DateTime.now(),
+                );
+                Navigator.pop(context, newNote);
+              },
+            ),
+          ],
         ),
       ),
     );
   }
 }
+
